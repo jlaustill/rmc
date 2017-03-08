@@ -11,8 +11,9 @@ module.exports = (db) => {
     context.getThingById = (id, callback) => {
         db.db(environment.database)
             .collection("things")
-            .findOne({"_id": new ObjectId(id)},
-                function (err, thing) {
+            .findOne(
+                {"_id": new ObjectId(id)},
+                (err, thing) => {
                     if (null !== err) {
                         return callback({"errors": [{"something": "bad"}]});
                     } else {
@@ -24,7 +25,7 @@ module.exports = (db) => {
     context.postThing = (thing, callback) => {
         db.db(environment.database)
             .collection("things")
-            .insertOne(thing, function (err, result) {
+            .insertOne(thing, (err, result) => {
                 if (err === null) {
                     return callback(result);
                 } else {

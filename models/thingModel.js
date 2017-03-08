@@ -17,7 +17,7 @@ class ThingModel {
         return {
             _id: this._id,
             name: this.name,
-	    date: this.date
+	        date: this.date
         };
     }
 }
