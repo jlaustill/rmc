@@ -12,7 +12,6 @@
     "body-parser": "^1.17.0",
     "compression": "^1.6.2",
     "express": "^4.15.0",
-    "mongodb": "^2.2.24",
     "mongoose": "^4.8.6"
   }
 }
