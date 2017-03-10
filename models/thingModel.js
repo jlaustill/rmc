@@ -1,25 +1,29 @@
 /**
  * Created by Joshua Austill on 3/2/2017.
  */
-let ObjectId = require("mongodb").ObjectID;
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-class ThingModel {
-    constructor(thing) {
-        thing = thing || {};
+// create the thing schema
+let thingSchema = new Schema({
+    name: String,
+    date: { type: Date, default: Date.now }
+});
 
-        // values
-        this._id = thing._id || new ObjectId();
-        this.name = thing.name || "";
-        this.date = thing.date ? new Date(thing.date) : new Date();
-    }
+// on every save, add the date
+thingSchema.pre('save', (next) => {
+    // get the current date
+    let currentDate = new Date();
 
-    asJSON() {
-        return {
-            _id: this._id,
-            name: this.name,
-	        date: this.date
-        };
-    }
-}
+    // change the date field to current date
+    this.date = currentDate;
 
-module.exports = ThingModel;
+    next();
+});
+
+// the schema is useless so far
+// we need to create a model using it
+let Thing = mongoose.model('Thing', thingSchema);
+
+// make this available to our users in our Node applications
+module.exports = Thing;

@@ -4,22 +4,23 @@
 let express = require('express');
 let router = express.Router();
 let Thing = require("../models/thingModel.js");
+let ThingContext = require("../contexts/thingContext.js");
 
-class ThingRouter {
-    constructor(db) {
-        let thingContext = require("../contexts/thingContext.js")(db);
+module.exports = class {
+    constructor() {
+        let thingContext = new ThingContext();
 
         router.route("/")
             .get((req, res) => {
                 let id = req.query.id;
                 thingContext.getThingById(id, (thing) => {
                     res.json(thing);
-                });//getThingById
-            })//route.get
+                }); // getThingById
+            }) // route.get
             .post((req, res) => {
-                let thing = new Thing(req.body);
+                let thing = new Thing({"name": req.body.name});
 
-                thingContext.postThing(thing.asJSON(), (result) => {
+                thingContext.saveThing(thing, (result) => {
                     res.json(result);
                 }); // postThing
             }); // route.post
@@ -32,7 +33,5 @@ class ThingRouter {
             }); // route.get
 
         return router;
-    }
-}
-
-module.exports = ThingRouter;
+    } // constructor
+}; // ThingRouter

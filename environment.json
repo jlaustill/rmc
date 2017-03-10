@@ -1,6 +1,6 @@
 {
 	"local": {
-		"connectionString": "mongodb://root:rjvRhE1t03j5v9go@hawstelcluster-shard-00-00-0kqfj.mongodb.net:27017,hawstelcluster-shard-00-01-0kqfj.mongodb.net:27017,hawstelcluster-shard-00-02-0kqfj.mongodb.net:27017/admin?ssl=true&replicaSet=HawstelCluster-shard-0&authSource=admin",
+		"connectionString": "mongodb://root:rjvRhE1t03j5v9go@hawstelcluster-shard-00-00-0kqfj.mongodb.net:27017,hawstelcluster-shard-00-01-0kqfj.mongodb.net:27017,hawstelcluster-shard-00-02-0kqfj.mongodb.net:27017/rmc?ssl=true&replicaSet=HawstelCluster-shard-0&authSource=admin",
 		"database": "rmc"
 	}
 }

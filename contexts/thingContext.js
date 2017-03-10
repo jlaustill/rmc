@@ -3,49 +3,38 @@
  */
 let environment = require("../environment");
 let ObjectId = require("mongodb").ObjectID;
+let Thing = require("../models/thingModel.js");
 
-module.exports = (db) => {
-    "use strict";
-    let context = {};
-
-    context.getThingById = (id, callback) => {
-        db.db(environment.database)
-            .collection("things")
-            .findOne(
+module.exports = class {
+    getThingById (id, callback) {
+        Thing.find(
                 {"_id": new ObjectId(id)},
                 (err, thing) => {
                     if (null !== err) {
-                        return callback({"errors": [{"something": "bad"}]});
+                        return callback({"errors": [err]});
                     } else {
                         return callback(thing);
                     }
                 });
-    }; // getThingById
+    } // getThingById
 
-    context.postThing = (thing, callback) => {
-        db.db(environment.database)
-            .collection("things")
-            .insertOne(thing, (err, result) => {
+    saveThing (thing, callback) {
+        thing.save( (err, result) => {
                 if (err === null) {
                     return callback(result);
                 } else {
-                    return callback({"errors": [{"something": "bad"}]});
+                    return callback({"errors": [err]});
                 } // if
             }); // insertOne()
-    }; // postThing
+    } // saveThing
 
-    context.getAllThings = (callback) => {
-        db.db(environment.database)
-            .collection("things")
-            .find()
-            .toArray((err, result) => {
+    getAllThings (callback) {
+        Thing.find((err, result) => {
                 if (err === null) {
                     return callback(result);
                 } else {
-                    return callback({"errors": [{"something": "bad"}]});
+                    return callback({"errors": [err]});
                 } // if
             }); // find
-    }; // getAllThings
-
-    return context;
+    } // getAllThings
 }; // module.exports
