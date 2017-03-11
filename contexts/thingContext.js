@@ -1,8 +1,8 @@
 /**
  * Created by Joshua.Austill on 3/3/2017.
  */
-const ObjectId = require("mongodb").ObjectID;
-const Thing = require("../models/thingModel.js");
+const ObjectId = require("mongodb").ObjectID,
+      Thing = require("../models/thingModel.js");
 
 module.exports = class {
     getThingById (id, callback) {

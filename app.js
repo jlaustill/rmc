@@ -5,11 +5,19 @@ const express = require("express");
 const app = express();
 const compression = require('compression');
 app.use(compression());
-const bodyParser = require("body-parser");
-const environment = require("./environment");
+const bodyParser = require("body-parser"),
+      environment = require("./environment"),
+      mongoose = require("mongoose"),
+      path = require("path");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// global variable for the running directory, why isn't this a thing??
+global.__appRoot = path.normalize(__dirname);
+
+mongoose.Promise = global.Promise;
+mongoose.connect(environment.connectionString);
 
 app.use(require('./routers'));
 
