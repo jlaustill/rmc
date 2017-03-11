@@ -1,9 +1,8 @@
 /**
  * Created by Joshua.Austill on 3/3/2017.
  */
-let environment = require("../environment");
-let ObjectId = require("mongodb").ObjectID;
-let Thing = require("../models/thingModel.js");
+const ObjectId = require("mongodb").ObjectID;
+const Thing = require("../models/thingModel.js");
 
 module.exports = class {
     getThingById (id, callback) {

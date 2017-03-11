@@ -1,11 +1,11 @@
-let express = require('express');
-let router = express.Router();
-let MongoClient = require("mongodb").MongoClient;
-let mongoose = require("mongoose");
-let environment = require("../environment");
-let assert = require("assert");
-let ThingRouter = require('./thingRouter');
+const express = require('express');
+const router = express.Router();
+const mongoose = require("mongoose");
+const environment = require("../environment");
+const assert = require("assert");
+const ThingRouter = require('./thingRouter');
 
+mongoose.Promise = global.Promise;
 mongoose.connect(environment.connectionString);
 
 router.use('/thing', new ThingRouter());
