@@ -6,11 +6,11 @@ const app = express();
 const compression = require('compression');
 app.use(compression());
 const bodyParser = require("body-parser"),
-      environment = require("./environment"),
-      mongoose = require("mongoose"),
-      path = require("path");
+    environment = require("./environment"),
+    mongoose = require("mongoose"),
+    path = require("path");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 // global variable for the running directory, why isn't this a thing??

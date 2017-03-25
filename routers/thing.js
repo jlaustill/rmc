@@ -2,12 +2,12 @@
  * Created by Joshua.Austill on 8/4/2016.
  */
 const router = require("express").Router(),
-      Thing = require(__appRoot + "/models/thingModel.js"),
-      ThingContext = require(__appRoot + "/contexts/thingContext.js");
+    Thing = require(__appRoot + "/models/thingModel.js"),
+    ThingContext = require(__appRoot + "/contexts/thingContext.js");
 
 const thingContext = new ThingContext();
 
-router.use(require("./all"));
+router.use(require("./thing/all"));
 
 router.route("/")
     .get((req, res) => {
