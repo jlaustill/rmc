@@ -2,7 +2,7 @@
  * Created by Joshua Austill on 3/2/2017.
  */
 const mongoose = require("mongoose"),
-      Schema = mongoose.Schema,
+      Schema = mongoose.Schema;
 
 // create the thing schema
 thingSchema = new Schema({
