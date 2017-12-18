@@ -17,7 +17,9 @@ app.use(bodyParser.json());
 global.__appRoot = path.normalize(__dirname);
 
 mongoose.Promise = global.Promise;
-mongoose.connect(environment.connectionString);
+mongoose.connect(environment.connectionString, {
+  useMongoClient: true,
+});
 
 app.use(require('./routers'));
 
